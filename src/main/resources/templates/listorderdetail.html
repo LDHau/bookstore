@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Detail</title>
+</head>
+<body>
+  <h2>List Order Detail</h2>
+  <div align="center">
+    <h2>Books</h2>
+    <table border="1">
+      <th:block th:each="detail : ${details}">
+        <tr>
+          <td th:text="${detail.id}"></td>
+          <td th:each="bookdetail : ${detail.booksList}"></td>
+            <!--/*@thymesVar id="bookdetail" type="springboot.bookstore.entitys.Books"*/-->
+            <p th:text="${bookdetail.title}"></p>
+        </tr>
+      </th:block>
+
+    </table>
+  </div>
+</body>
+</html>

@@ -13,7 +13,7 @@ public class OrderDetail {
     private int id;
 
 //    @OneToMany(mappedBy = "orderDetail")
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "detail_id",foreignKey = @ForeignKey(name = "DETAIL_ID_FK"))
     private List<Books> booksList = new ArrayList<>();
 
