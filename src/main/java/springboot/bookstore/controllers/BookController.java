@@ -27,20 +27,34 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
+    @GetMapping("/showform")
+    public String showform(Model model) {
+        model.addAttribute("book", new Books());
+        return "addbook";
+    }
+
     @PostMapping("/book")
-    public void addBook(@RequestBody Books books) {
-        bookService.addToBook(books);
+    public String addBook(@ModelAttribute("book") Books book) {
+        bookService.addToBook(book);
+        return "redirect:/listbook";
     }
 
-//    @PostMapping("/updatebook")
-    @PutMapping("/editbook")
-    public void updateBook(@RequestParam int id ,@RequestBody Books books) {
-        bookService.updateBook(id, books);
+    @GetMapping("editbook")
+    public String editFormBook(@RequestParam int id, Model model) {
+        model.addAttribute("bookbyid", bookService.getBookById(id));
+        return "editbook";
     }
 
-    @DeleteMapping("/deletebook")
-    public void deleteBook(@RequestParam int id) {
+    @PostMapping("/editbook")
+    public String saveEditBook(@ModelAttribute("bookbyid") Books book, @RequestParam int id) {
+        bookService.updateBook(id, book);
+        return "redirect:/listbook";
+    }
+
+    @GetMapping("/deletebook")
+    public String deleteBook(@RequestParam int id) {
         bookService.deleteBook(id);
+        return "redirect:/listbook";
     }
 
 }
