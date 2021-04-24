@@ -29,8 +29,8 @@ public class MainService {
         mainRepository.addToBook(books);
     }
 
-    public void updateBook(int id, Books books) {
-        mainRepository.updateToBook(id, books);
+    public void updateBook(int id, Books book) {
+        mainRepository.updateToBook(id, book);
     }
 
     public void deleteBook(int id) {
@@ -39,8 +39,12 @@ public class MainService {
 
     // ===== Order Detail ===== \\
 
-    public void createOrderDetail(OrderDetail orderDetail) {
-        mainRepository.createOrderDetail(orderDetail);
+    public void createOrderDetail(int idBook) {
+        mainRepository.createOrderDetail(idBook);
+    }
+
+    public List<OrderDetail> detailList() {
+        return mainRepository.detailList();
     }
 
 }
