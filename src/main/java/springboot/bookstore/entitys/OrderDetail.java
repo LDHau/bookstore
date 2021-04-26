@@ -12,7 +12,6 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @OneToMany(mappedBy = "orderDetail")
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "detail_id",foreignKey = @ForeignKey(name = "DETAIL_ID_FK"))
     private List<Books> booksList = new ArrayList<>();

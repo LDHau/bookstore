@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springboot.bookstore.entitys.Books;
 import springboot.bookstore.entitys.OrderDetail;
+import springboot.bookstore.entitys.Orders;
 import springboot.bookstore.repositorys.MainRepository;
 
 import java.util.List;
@@ -51,4 +52,12 @@ public class MainService {
         mainRepository.deleteDetail(idDetail);
     }
 
+    // ===== Orders ===== \\
+    public List<Orders> ordersList() {
+        return mainRepository.ordersList();
+    }
+
+    public void createOrders(int idDetail) {
+        mainRepository.createOrders(idDetail);
+    }
 }

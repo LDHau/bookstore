@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import springboot.bookstore.entitys.Books;
 import springboot.bookstore.entitys.OrderDetail;
+import springboot.bookstore.entitys.Orders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,5 +115,22 @@ public class MainRepository {
     }
 
     // ===== Orders ===== \\
+    @Transactional
+    public List<Orders> ordersList() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("SELECT a FROM Orders a", Orders.class).getResultList();
+    }
 
+    public void createOrders(int idDetail) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Orders order = new Orders();
+        List<OrderDetail> detailList = new ArrayList<>();
+        detailList.add(session.load(OrderDetail.class, idDetail));
+        order.setOrderDetails(detailList);
+        session.save(order);
+        session.flush();
+        transaction.commit();
+        session.close();
+    }
 }
