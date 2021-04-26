@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import springboot.bookstore.entitys.Books;
 import springboot.bookstore.entitys.OrderDetail;
-import springboot.bookstore.entitys.Orders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,9 +115,5 @@ public class MainRepository {
 
     // ===== Orders ===== \\
 
-    @Transactional
-    public List<Orders> ordersList() {
-        Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("SELECT a FROM Orders a", Orders.class).getResultList();
-    }
+
 }
