@@ -29,8 +29,9 @@ public class OrderDetailController {
     }
 
     @GetMapping("/deletedetail")
-    public void deleteDetail(@RequestParam int idDetail) {
+    public String deleteDetail(@RequestParam int idDetail) {
         mainService.deleteOrderDetail(idDetail);
+        return "redirect:/listorderdetail";
     }
 
 
