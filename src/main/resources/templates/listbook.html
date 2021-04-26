@@ -10,6 +10,7 @@
 <body>
     <div align="center">
         <h2>Books</h2>
+        <h3><a href="/showform">Add book</a></h3>
         <table border="1">
             <thead>
             <tr>
@@ -18,6 +19,7 @@
                 <th>Pages</th>
                 <th>Edit</th>
                 <th>Delete</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -27,6 +29,7 @@
                 <td th:text="${book.pages}"></td>
                 <td><a th:href="@{/editbook(id=${book.id})}">EDIT</a></td>
                 <td><a th:href="@{/deletebook(id=${book.id})}" >DELETE</a></td>
+                <td><a th:href="@{/adddetail(id=${book.id})}">Add To Cart</a></td>
             </tr>
             </tbody>
         </table>

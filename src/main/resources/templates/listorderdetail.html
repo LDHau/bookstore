@@ -6,18 +6,20 @@
 </head>
 <body>
   <h2>List Order Detail</h2>
-  <div align="center">
+  <div>
+    <h1>test</h1>
     <h2>Books</h2>
     <table border="1">
-      <th:block th:each="detail : ${details}">
-        <tr>
-          <td th:text="${detail.id}"></td>
-          <td th:each="bookdetail : ${detail.booksList}"></td>
-            <!--/*@thymesVar id="bookdetail" type="springboot.bookstore.entitys.Books"*/-->
-            <p th:text="${bookdetail.title}"></p>
-        </tr>
-      </th:block>
 
+      <div th:each="detail : ${details}">
+        <div th:text="${detail.id}"></div>
+        <ul>
+          <div th:each="book : ${detail.getBooksList()}">
+            <li th:text="${book.title}"></li>
+            <li th:text="${book.price}"></li>
+          </div>
+        </ul>
+      </div>
     </table>
   </div>
 </body>
