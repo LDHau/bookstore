@@ -28,10 +28,10 @@ public class OrderDetailController {
         return "listorderdetail";
     }
 
-    @GetMapping("/deletedetail")
-    public void deleteDetail(@RequestParam int idDetail) {
-        mainService.deleteOrderDetail(idDetail);
-    }
+//    @GetMapping("/deletedetail")
+//    public void deleteDetail(@RequestParam int idDetail) {
+//        mainService.deleteOrderDetail(idDetail);
+//    }
 
 
 }
