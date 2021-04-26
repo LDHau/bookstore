@@ -16,7 +16,7 @@ public class Orders {
     @Column(name = "total")
     private float total;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "ORDER_ID_FK"))
     private List<OrderDetail> orderDetails = new ArrayList<>();
 
