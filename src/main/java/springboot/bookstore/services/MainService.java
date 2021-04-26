@@ -47,4 +47,8 @@ public class MainService {
         return mainRepository.detailList();
     }
 
+    public void deleteOrderDetail(int idDetail) {
+        mainRepository.deleteDetail(idDetail);
+    }
+
 }

@@ -17,7 +17,7 @@ public class OrderDetail {
     @JoinColumn(name = "detail_id",foreignKey = @ForeignKey(name = "DETAIL_ID_FK"))
     private List<Books> booksList = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", foreignKey =  @ForeignKey(name = "ORDER_ID_FK"))
     private Orders orders;
 
