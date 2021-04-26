@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import springboot.bookstore.entitys.Books;
 import springboot.bookstore.entitys.OrderDetail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -81,13 +82,38 @@ public class MainRepository {
 
     // ===== Order Detail ===== \\
 
-    @Transactional
-    public void createOrderDetail(OrderDetail orderDetail) {
-        Session session = sessionFactory.getCurrentSession();
+    public void createOrderDetail(int idBook) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         OrderDetail newOrderDetail = new OrderDetail();
-        newOrderDetail.setBooksList(orderDetail.getBooksList());
-        newOrderDetail.setOrders(orderDetail.getOrders());
+        Books book = session.load(Books.class, idBook);
+        List<Books> books = new ArrayList<>();
+        books.add(book);
+        newOrderDetail.setBooksList(books);
         session.save(newOrderDetail);
+        session.flush();
+        transaction.commit();
+        session.close();
     }
+
+    @Transactional
+    public List<OrderDetail> detailList() {
+        Session session = sessionFactory.getCurrentSession();
+        List<OrderDetail> listDetail = session.createQuery("SELECT a FROM OrderDetail a", OrderDetail.class).getResultList();
+        return listDetail;
+    }
+
+    public void deleteDetail(int idDetail) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        OrderDetail orderDetail = session.load(OrderDetail.class, idDetail);
+        session.delete(orderDetail);
+        session.flush();
+        transaction.commit();
+        session.close();
+    }
+
+    // ===== Orders ===== \\
+
 
 }
